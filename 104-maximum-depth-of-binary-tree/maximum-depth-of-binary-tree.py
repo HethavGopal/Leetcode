@@ -9,13 +9,6 @@ class Solution:
         if not root:
             return 0
 
-        depth = 1
-
-        if root.left and root.right:
-            depth = max(self.maxDepth(root.right) + 1, self.maxDepth(root.left) + 1)
-        elif root.left:
-            depth = max(depth, self.maxDepth(root.left) + 1)
-        else:
-            depth = max(self.maxDepth(root.right) + 1, depth)
-
-        return depth
+        return 1 + max(
+            self.maxDepth(root.right), self.maxDepth(root.left)
+        )   
