@@ -1,40 +1,50 @@
 class Solution:
     def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
-        res, curSet = [], []
+        curSet, res = [], []
+        total = 0
+        
+        
 
-        def dfs(i,curSet,total):
-
-            # Base cases
-            if total > target:
-                return         
-    
+        def dfs(i, total):
+        
+        
             if total == target:
                 res.append(curSet.copy())
                 return
+            elif total > target:
+                return 
             
             if i >= len(candidates):
                 return
             
-            # Incl case
-            curSet.append(candidates[i])            
-            dfs(i, curSet, total + candidates[i])
-            curSet.pop()
-
-            #skip case
-            dfs(i + 1, curSet, total)
             
-        dfs(0,[],0)
+            # Include current index
+            curSet.append(candidates[i])
+            dfs(i, total + candidates[i])
+            curSet.pop()
+            
+            # Skip index
+            dfs(i + 1, total)
+
+        
+        dfs(0,total)
+
         return res
 
-            
 
 
 
-        
-        
 
 
 
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
